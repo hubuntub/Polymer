@@ -1,0 +1,80 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://--------your-application-id-here--------.appspot.com/_ah/api",
+  "name" : "songs",
+  "version" : "v1",
+  "description" : "A simple and polite API",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://--------your-application-id-here--------.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "songs.hello" : {
+      "path" : "hello",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.zenika.web.polymer.SongAPI.hello",
+      "request" : {
+        "parameters" : {
+          "who" : {
+            "type" : "string",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Song" : {
+        "id" : "Song",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "singer" : {
+            "type" : "string"
+          },
+          "avatarId" : {
+            "type" : "integer"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.zenika.web.polymer.SongsAPI.hello" : {
+        "response" : {
+          "$ref" : "Song"
+        }
+      }
+    }
+  }
+}
